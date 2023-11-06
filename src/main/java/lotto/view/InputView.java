@@ -10,4 +10,10 @@ public class InputView {
         return purchaseAmount;
     }
 
+    public static String inputWinnerNumbers(){
+        OutputView.printWinnerNumberInputPrompt();
+        String winnerNumbers = Console.readLine();
+        return winnerNumbers;
+    }
+
 }
