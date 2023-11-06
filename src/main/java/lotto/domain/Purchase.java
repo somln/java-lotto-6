@@ -7,17 +7,18 @@ public class Purchase {
     private final int purchaseAmount;
     private final int ticketCount;
 
-    private Purchase(String input) {
-        int purchaseAmount = InputValidator.validatePurchaseAmount(input);
+    private Purchase(int purchaseAmount, int ticketCount) {
         this.purchaseAmount = purchaseAmount;
-        this.ticketCount = calculateTicketCount(purchaseAmount);
+        this.ticketCount = ticketCount;
     }
 
     public static Purchase create(final String input) {
-        return new Purchase(input);
+        int purchaseAmount = InputValidator.validatePurchaseAmount(input);
+        int ticketCount = calculateTicketCount(purchaseAmount);
+        return new Purchase(purchaseAmount, ticketCount);
     }
 
-    public int calculateTicketCount(int purchaseAmount){
+    private static int calculateTicketCount(int purchaseAmount) {
         return purchaseAmount / LottoConst.LOTTO_PRICE;
     }
 }
