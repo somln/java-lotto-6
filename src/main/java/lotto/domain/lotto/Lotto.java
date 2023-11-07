@@ -1,10 +1,10 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import lotto.exception.LottoNumbersException;
 
 import java.util.List;
 
-import static lotto.domain.LottoConst.*;
+import static lotto.domain.lotto.LottoConst.*;
 import static lotto.utill.ErrorMessage.*;
 import static lotto.utill.ErrorMessage.NUMBER_RANGE;
 

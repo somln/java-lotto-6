@@ -1,11 +1,12 @@
-package lotto.domain;
+package lotto.domain.winning;
 
+import lotto.domain.lotto.Lotto;
 import lotto.exception.BonusNumberException;
 
 import java.util.List;
 
-import static lotto.domain.LottoConst.MAX_NUMBER;
-import static lotto.domain.LottoConst.MIN_NUMBER;
+import static lotto.domain.lotto.LottoConst.MAX_NUMBER;
+import static lotto.domain.lotto.LottoConst.MIN_NUMBER;
 import static lotto.utill.ErrorMessage.BONUS_NUMBER_OVERLAP;
 import static lotto.utill.ErrorMessage.NUMBER_RANGE;
 
@@ -23,6 +24,27 @@ public class WinningTicket {
     public void validateBonusNumber(Lotto lotto, int bonusNumber){
         validateNumberRange(bonusNumber);
         validateBonusOverlap(lotto, bonusNumber);
+    }
+
+    public int matchWinningLotto(Lotto lotto) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+        return countMatchingNumbers(lottoNumbers, winningNumbers);
+    }
+
+    public boolean matchBonusNumber(Lotto lotto){
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        return lottoNumbers.contains(bonusNumber);
+    }
+
+    private int countMatchingNumbers(List<Integer> numbersToCheck, List<Integer> winningNumbers) {
+        int matchingNumbers = 0;
+        for (int number : winningNumbers) {
+            if (numbersToCheck.contains(number)) {
+                matchingNumbers++;
+            }
+        }
+        return matchingNumbers;
     }
 
     private static void validateNumberRange(int bonusNumber) {
