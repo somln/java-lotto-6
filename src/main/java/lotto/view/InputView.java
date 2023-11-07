@@ -12,7 +12,7 @@ public class InputView {
         return purchaseAmount;
     }
 
-    public static String inputWinnerNumbers(){
+    public static String inputWinningNumbers(){
         OutputView.printWinningNumberInputPrompt();
         String winnerNumbers = Console.readLine();
         return winnerNumbers;
