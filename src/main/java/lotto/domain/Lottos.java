@@ -19,10 +19,9 @@ public class Lottos {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < ticketCount; i++) {
-            Lotto lotto = new Lotto();
+            Lotto lotto = new Lotto(LottoGenerator.generateLotto());
             lottos.add(lotto);
         }
-
         return lottos;
     }
 
