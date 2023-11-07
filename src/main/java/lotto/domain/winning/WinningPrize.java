@@ -29,14 +29,36 @@ public enum WinningPrize {
         return message;
     }
 
-    public static WinningPrize getPrize(int matchCount, boolean bonus){
-        if(matchCount==First.matchCount) return First;
-        if(matchCount== Second.matchCount) return Second;
+    public static WinningPrize getPrize(int matchCount, boolean bonus) {
+        if (isFirstMatch(matchCount)) {
+            return First;
+        }
+
+        if (isSecondMatch(matchCount)) {
+            return Second;
+        }
+
+        return getPrizeForMatchCount(matchCount);
+    }
+
+    private static boolean isFirstMatch(int matchCount) {
+        return matchCount == First.matchCount;
+    }
+
+    private static boolean isSecondMatch(int matchCount) {
+        return matchCount == Second.matchCount;
+    }
+
+    private static WinningPrize getPrizeForMatchCount(int matchCount) {
         for (WinningPrize winningPrize : values()) {
-            if (matchCount == winningPrize.matchCount && winningPrize != Second) {
+            if (winningPrize != Second && isMatchingCount(winningPrize, matchCount)) {
                 return winningPrize;
             }
         }
         return null;
+    }
+
+    private static boolean isMatchingCount(WinningPrize prize, int matchCount) {
+        return prize.matchCount == matchCount;
     }
 }
