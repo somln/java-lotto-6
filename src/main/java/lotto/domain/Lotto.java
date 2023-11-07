@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.exception.WinnerNumbersException;
+import lotto.exception.LottoNumbersException;
 
 import java.util.List;
 
@@ -28,32 +28,32 @@ public class Lotto {
     }
 
     private void validateNumbersCount(List<Integer> numbers) {
-        if (!isCorrectNumberCount()) {
-            throw new WinnerNumbersException(String.format(NUMBER_COUNT_INVALID.getMessage(),NUMBER_COUNT));
+        if (!isCorrectNumberCount(numbers)) {
+            throw new LottoNumbersException(String.format(NUMBER_COUNT_INVALID.getMessage(), NUMBER_COUNT));
         }
     }
 
-    private boolean isCorrectNumberCount(){
-        return numbers.size()==NUMBER_COUNT;
+    private boolean isCorrectNumberCount(List<Integer> numbers) {
+        return numbers.size() == NUMBER_COUNT;
     }
 
-    private void validateDuplicate(List<Integer> numbers){
-        if(!hasNoduplicate(numbers)){
-            throw new WinnerNumbersException(LOTTO_NUMBER_NO_DUPLICATE.getMessage());
+    private void validateDuplicate(List<Integer> numbers) {
+        if (!hasNoDuplicate(numbers)) {
+            throw new LottoNumbersException(LOTTO_NUMBER_NO_DUPLICATE.getMessage());
         }
     }
 
-    private boolean hasNoduplicate(List<Integer> numbers){
+    private boolean hasNoDuplicate(List<Integer> numbers) {
         return numbers.stream().distinct().count() == numbers.size();
     }
 
-    private void validateNumbersRange(List<Integer> numbers){
-        if(!isNumbersInRange(numbers)){
-            throw new WinnerNumbersException(String.format(NUMBER_RANGE.getMessage(),MIN_NUMBER, MAX_NUMBER));
+    private void validateNumbersRange(List<Integer> numbers) {
+        if (!isNumbersInRange(numbers)) {
+            throw new LottoNumbersException(String.format(NUMBER_RANGE.getMessage(), MIN_NUMBER, MAX_NUMBER));
         }
     }
 
-    private boolean isNumbersInRange(List<Integer> numbers){
+    private boolean isNumbersInRange(List<Integer> numbers) {
         return numbers.stream().allMatch(number -> number >= MIN_NUMBER && number <= MAX_NUMBER);
     }
 

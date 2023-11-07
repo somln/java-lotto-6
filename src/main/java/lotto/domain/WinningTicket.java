@@ -14,9 +14,9 @@ public class WinningTicket {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public WinningTicket(lotto.domain.Lotto winningLotto, int bonusNumber) {
-        validateBonusNumber(winningLotto, bonusNumber);
+    public WinningTicket(Lotto winningLotto, int bonusNumber) {
         this.winningLotto = winningLotto;
+        validateBonusNumber(winningLotto, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -24,6 +24,7 @@ public class WinningTicket {
         validateNumberRange(bonusNumber);
         validateBonusOverlap(lotto, bonusNumber);
     }
+
     private static void validateNumberRange(int bonusNumber) {
         if(!isNumberInRange(bonusNumber)) {
             throw new BonusNumberException(String.format(NUMBER_RANGE.getMessage(), MIN_NUMBER, MAX_NUMBER));
