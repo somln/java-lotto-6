@@ -32,11 +32,6 @@ public class WinningTicket {
         return countMatchingNumbers(lottoNumbers, winningNumbers);
     }
 
-    public boolean matchBonusNumber(Lotto lotto){
-        List<Integer> lottoNumbers = lotto.getNumbers();
-        return lottoNumbers.contains(bonusNumber);
-    }
-
     private int countMatchingNumbers(List<Integer> numbersToCheck, List<Integer> winningNumbers) {
         int matchingNumbers = 0;
         for (int number : winningNumbers) {
@@ -45,6 +40,11 @@ public class WinningTicket {
             }
         }
         return matchingNumbers;
+    }
+
+    public boolean matchBonusNumber(Lotto lotto){
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        return lottoNumbers.contains(bonusNumber);
     }
 
     private static void validateNumberRange(int bonusNumber) {

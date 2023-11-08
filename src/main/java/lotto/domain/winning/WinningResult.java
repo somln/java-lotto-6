@@ -1,21 +1,27 @@
 package lotto.domain.winning;
 
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.Lottos;
-
 import java.util.HashMap;
 import java.util.Map;
-
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Lottos;
 import static lotto.domain.lotto.LottoConst.MIN_MATCH_COUNT;
 
 public class WinningResult {
-
-    private Map<WinningPrize, Integer> winnersCount = new HashMap<>();
+    private Map<WinningPrize, Integer> winnersCount;
 
     public WinningResult() {
+        winnersCount = new HashMap<>();
+        initializeWinnersCount();
+    }
+
+    private void initializeWinnersCount() {
         for (WinningPrize prize : WinningPrize.values()) {
             winnersCount.put(prize, 0);
         }
+    }
+
+    public Map<WinningPrize, Integer> getWinnersCount() {
+        return winnersCount;
     }
 
     public void calculateWinnersCount(Lottos lottos, WinningTicket winningTicket) {
@@ -39,6 +45,5 @@ public class WinningResult {
             }
         }
     }
-
 
 }
